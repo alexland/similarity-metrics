@@ -1,0 +1,1 @@
+![schematic](https://raw.github.com/alexland/similarity-metrics/master/assets/sm-taxonomy.png)
