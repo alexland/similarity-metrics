@@ -22,19 +22,24 @@ def jaccard(vec1, vec2) :
     return numer / denom
 
 
-# 
+def similarity(uid):
+	vec1 = r0.get(uid)
+	all_vecs = [ [r0.get(k), k] for k in r0.keys('*')]
+	jaccard_scores = sorted([ [jaccard(vec1, vec), k for vec in all_vecs ])[1:]
+
+
 def tanimoto(A, B) :
-	""" 
-	returns Tanimoto coefficient; 
+	"""
+	returns Tanimoto coefficient;
 	A & B is A *union* B (!= intersection)
-	
+
 	"""
 	A, B = set(A), set(B)
 	numer = len(A & B)
 	denom = len(A) + len(B) - len(A & B)
 	return numer/float(denom)
 
-	
+
 def tanimoto_bool(A, B) :
 	"""
 		returns Tanimoto coefficient;
@@ -47,13 +52,13 @@ def tanimoto_bool(A, B) :
 
 
 
-headers = ['sex', 'acquisition_channel', 'forum_participation_level', 
+headers = ['sex', 'acquisition_channel', 'forum_participation_level',
 			'account_type']
 
 
-input_fields = ['male', 'female', 
-				'new', 'trusted', 'active_participant', 'moderator', 
-				'direct_typein', 'organic_search', 'affiliate', 
+input_fields = ['male', 'female',
+				'new', 'trusted', 'active_participant', 'moderator',
+				'direct_typein', 'organic_search', 'affiliate',
 				'premium_subscriber', 'regular_subscriber', 'unregistered_user']
 
 
@@ -75,7 +80,7 @@ input_fields = ['male', 'female',
 
 # calculate a pair-wise similarity score (row1 & row2)
 >>> row1 == row2  # element-wise comparison
-   array([False, False, False, False,  True,  True, False,  True,  True, False], 
+   array([False, False, False, False,  True,  True, False,  True,  True, False],
 			dtype=bool)
 >>> NP.sum(row1==row2)
   5
